@@ -8,23 +8,23 @@ public class Java_board {
 		String title = "";
 		String body = "";
 		while (true) {
-			System.out.print("¸í·É¾î ÀÔ·Â : ");
+			System.out.print("ëª…ë ¹ì–´ ì…ë ¥: ");
 			String str = sc.next();
 
 			if (str.equals("exit")) {
-				System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
+				System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 				break;
 			}
 			if (str.equals("add")) {
-				System.out.println("°Ô½Ã¹° Á¦¸ñÀ» Ãâ·ÂÇØÁÖ¼¼¿ä : ");
+				System.out.println("ê²Œì‹œë¬¼ ì œëª© ì…ë ¥ : ");
 				title = sc.next();
-				System.out.println("°Ô½Ã¹° ³»¿ëÀ» Ãâ·ÂÇØÁÖ¼¼¿ä : ");
+				System.out.println("ê²Œì‹œë¬¼ ë‚´ìš© ì…ë ¥ : ");
 				body = sc.next();
-				System.out.println("°Ô½Ã¹°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+				System.out.println("ê²Œì‹œë¬¼ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			}
 			if (str.equals("list")) {
-				System.out.println("Á¦¸ñ : " + title);
-				System.out.println("³»¿ë : " + body);
+				System.out.println("ì œëª© : " + title);
+				System.out.println("ë‚´ìš© : " + body);
 			}
 		}
 
