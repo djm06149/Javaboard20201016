@@ -9,6 +9,7 @@ public class Java_board {
 		ArrayList<Integer> ids = new ArrayList<>();
 		ArrayList<String> titles = new ArrayList<>();
 		ArrayList<String> bodies = new ArrayList<>();
+		ArrayList<Article> articles = new ArrayList<>();
 
 		int no = 1;
 
@@ -21,11 +22,18 @@ public class Java_board {
 				break;
 			}
 			if (str.equals("add")) {
+				
+				Article a = new Article();
+				
+				a.id = no;
+				
 				ids.add(no);
 				no++;
 				System.out.print("게시물 제목 입력 : ");
+//				a.title = title;
 				titles.add(sc.next());
 				System.out.print("게시물 내용 입력 : ");
+//				a.body = body;
 				bodies.add(sc.next());
 				System.out.println("게시물이 등록되었습니다.");
 
