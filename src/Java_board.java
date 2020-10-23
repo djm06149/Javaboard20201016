@@ -4,24 +4,10 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Java_board {
-	static ArrayList<Article> articles;
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		Date today = new Date();
-		SimpleDateFormat date = new SimpleDateFormat("yyyy.MM.dd");
-
-		articles = new ArrayList<>();
-
-		Article a1 = new Article(1, "제목1", "내용1", "익명");
-		Article a2 = new Article(2, "제목2", "내용2", "익명");
-		Article a3 = new Article(3, "제목3", "내용3", "익명");
-
-		articles.add(a1);
-		articles.add(a2);
-		articles.add(a3);
-
-		int no = 4;
+		ArticleDao dao = new ArticleDao();
 
 		while (true) {
 			System.out.print("명령어 입력: ");
@@ -35,8 +21,6 @@ public class Java_board {
 
 				Article a = new Article();
 
-				a.setId(no);
-				no++;
 				System.out.print("게시물 제목 입력 : ");
 				String title = sc.next();
 				a.setTitle(title);
@@ -44,45 +28,22 @@ public class Java_board {
 				System.out.print("게시물 내용 입력 : ");
 				String body = sc.next();
 				a.setBody(body);
+
 				a.setNickname("익명");
 
-				articles.add(a);
+				dao.insertArticle(a);
 				System.out.println("게시물이 등록되었습니다.");
 			}
 			if (str.equals("list")) {
-				for (int i = 0; i < articles.size(); i++) {
-					Article article = articles.get(i);
-					System.out.println("번호 : " + article.getId());
-					System.out.println("제목 : " + article.getTitle());
-					System.out.println("작성자 : " + article.getNickname());
-					System.out.println("등록날짜 : " + date.format(today));
-					System.out.println("조회수 : " + article.getHit());
-					System.out.println("======================");
-				}
+				ArrayList<Article> articles = dao.getArticles();
+
+				printArticles(articles);
 			}
 			if (str.equals("update")) {
 
-// index 버전
-//		System.out.println("수정할 게시물 선택 : ");
-//		int targetId = sc.nextInt();
-//			if (targetId == -1) {
-//				System.out.println("없는 게시물입니다.");
-//				} else {
-//					System.out.println("게시물 제목을 입력해주세요 :");
-//					String newTitle = sc.next();			
-//					System.out.println("게시물 내용을 입력해주세요 :");
-//					String newBody = sc.next();				
-//					Article newArticle = new Article();
-//					newArticle.setId(targetId);
-//					newArticle.setTitle(newTitle);
-//					newArticle.setBody(newBody);				
-//					articles.set(targetId, newArticle);
-//					break;
-//								}
-
 				System.out.println("수정할 게시물 선택 : ");
 				int targetId = sc.nextInt();
-				Article target = getArticleById(targetId);
+				Article target = dao.getArticleById(targetId);
 				if (target == null) {
 					System.out.println("없는 게시물입니다.");
 				} else {
@@ -90,25 +51,28 @@ public class Java_board {
 					String newTitle = sc.next();
 					System.out.println("게시물 내용을 입력해주세요 :");
 					String newBody = sc.next();
+
 					target.setTitle(newTitle);
 					target.setBody(newBody);
+
 					break;
 				}
 			}
 			if (str.equals("delete")) {
 				System.out.println("삭제할 게시물 선택 : ");
+				ArrayList<Article> articles = dao.getArticles();
 				int targetId = sc.nextInt();
-				Article target = getArticleById(targetId);
+				Article target = dao.getArticleById(targetId);
 				if (target == null) {
 					System.out.println("게시물이 존재하지 않습니다.");
 				} else {
-					articles.remove(target);
+					dao.removeArticle(target);
 				}
 			}
 			if (str.equals("read")) {
 				System.out.println("게시물 번호 선택 : ");
 				int targetId = sc.nextInt();
-				Article target = getArticleById(targetId);
+				Article target = dao.getArticleById(targetId);
 				if (target == null) {
 					System.out.println("게시물이 존재하지 않습니다.");
 				} else {
@@ -120,30 +84,26 @@ public class Java_board {
 					System.out.println("===============");
 				}
 			}
-		}
-	}
+			if (str.equals("search")) {
+				System.out.println("검색 키워드를 입력해주세요 : ");
+				String keyword = sc.next();
+				dao.getSearchedArticlesByTitle(keyword);
+				ArrayList<Article> searchedArticles = dao.getSearchedArticlesByTitle(keyword);
 
-	// index 버전
-	public static int getArticleIndexById(int targetId) {
-		for (int i = 0; i < articles.size(); i++) {
-			int id = articles.get(i).getId();
-
-			if (id == targetId) {
-				return i;
+				printArticles(searchedArticles);
 			}
 		}
-		return -1;
 	}
+	private static void printArticles(ArrayList<Article> articleList) {
+		for (int i = 0; i < articleList.size(); i++) {
+			Article article = articleList.get(i);
+			System.out.println("번호 : " + article.getId());
+			System.out.println("제목 : " + article.getTitle());
+			System.out.println("작성자 : " + article.getNickname());
+			System.out.println("등록날짜 : " + article.getRegDate());
+			System.out.println("조회수 : " + article.getHit());
+			System.out.println("======================");
 
-	// Article 버전
-	public static Article getArticleById(int targetId) {
-		for (int i = 0; i < articles.size(); i++) {
-			int id = articles.get(i).getId();
-
-			if (id == targetId) {
-				return articles.get(i);
-			}
 		}
-		return null;
 	}
 }

@@ -4,14 +4,15 @@ public class Article {
 	private int id;
 	private String title;
 	private String body;
-	private String time;
+	private String regDate;
 	private String nickname;
 	private int hit;
 	
-	public Article(int id, String title, String body, String nickname) {
+	public Article(int id, String title, String body, String nickname, String regDate) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
+		this.regDate = regDate;
 		this.nickname = nickname;
 	}
 	public String getNickname() {
@@ -30,12 +31,12 @@ public class Article {
 		this.hit = hit;
 	}
 
-	public String getTime() {
-		return time;
+	public String getRegDate() {
+		return regDate;
 	}
 
-	public void setTime(String time) {
-		this.time = time;
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 
 	public Article() {
