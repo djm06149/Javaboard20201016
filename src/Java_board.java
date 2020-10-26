@@ -85,15 +85,20 @@ public class Java_board {
 				}
 			}
 			if (str.equals("search")) {
-				System.out.println("검색 키워드를 입력해주세요 : ");
+				System.out.print("검색항목을 선택해주세요 (1. 제목 2. 내용 3. 제목 + 내용 4. 작성자) : ");
+				int flag = sc.nextInt();
+				System.out.print("검색 키워드를 입력해주세요 : ");
 				String keyword = sc.next();
-				dao.getSearchedArticlesByTitle(keyword);
-				ArrayList<Article> searchedArticles = dao.getSearchedArticlesByTitle(keyword);
+				ArrayList<Article> searchedArticles;
+			
+					searchedArticles = dao.getSearchedArticlesByFlag(flag, keyword);
+		
 
 				printArticles(searchedArticles);
 			}
 		}
 	}
+
 	private static void printArticles(ArrayList<Article> articleList) {
 		for (int i = 0; i < articleList.size(); i++) {
 			Article article = articleList.get(i);

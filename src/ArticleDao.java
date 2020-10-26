@@ -41,18 +41,33 @@ public class ArticleDao {
 		return time1;
 	}
 
-	public ArrayList<Article> getSearchedArticlesByTitle(String keyword) {
+	public ArrayList<Article> getSearchedArticlesByFlag(int flag, String keyword) {
 		ArrayList<Article> searchedArticles = new ArrayList<>();
 		
 		for(int i = 0; i < articles.size(); i++) {
 			Article article = articles.get(i);
-			String str = article.getTitle();// 각 게시물 제목
+			String str = "";
+			if(flag == 1) {
+				str = article.getTitle();// 각 게시물 제목
+			}
+			if(flag == 2) {
+				str = article.getBody();// 각 게시물 제목
+			}
+			if(flag == 3) {
+				str = article.getTitle() + article.getBody();// 각 게시물 제목
+			}
+			if(flag == 4) {
+				str = article.getNickname();// 각 게시물 제목
+			}
+			
 			if (str.contains(keyword)) {
 				searchedArticles.add(article);
 			}
 		}	
 		return searchedArticles;
 	}
+	
+
 
 	// Article 버전
 	public static Article getArticleById(int targetId) {
