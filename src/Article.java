@@ -7,7 +7,8 @@ public class Article {
 	private String regDate;
 	private String nickname;
 	private int hit;
-	
+
+
 	public Article(int id, String title, String body, String nickname, String regDate) {
 		this.id = id;
 		this.title = title;
@@ -15,6 +16,7 @@ public class Article {
 		this.regDate = regDate;
 		this.nickname = nickname;
 	}
+
 	public String getNickname() {
 		return nickname;
 	}
@@ -43,7 +45,6 @@ public class Article {
 
 	}
 
-
 	public int getId() {
 		return id;
 	}
@@ -66,5 +67,20 @@ public class Article {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+
+	public String getPropertiesByFlag(int flag) {
+		String str = "";
+		if (flag == 1) {
+			str = this.getTitle();
+		} else if (flag == 2) {
+			str = this.getBody();
+		} else if (flag == 3) {
+			str = this.getTitle() + this.getBody();
+		} else {
+			str = this.getNickname();
+		}
+
+		return str;
 	}
 }

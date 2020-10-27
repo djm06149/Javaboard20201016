@@ -46,17 +46,7 @@ public class ArticleDao {
 
 		for (int i = 0; i < articles.size(); i++) {
 			Article article = articles.get(i);
-			String str = "";
-			if (flag == 1) {
-				str = article.getTitle();
-			} else if (flag == 2) {
-				str = article.getBody();
-			} else if (flag == 3) {
-				str = article.getTitle() + article.getBody();
-			} else {
-				str = article.getNickname();
-			}
-
+			String str = article.getPropertiesByFlag(flag);
 			if (str.contains(keyword)) {
 				searchedArticles.add(article);
 			}

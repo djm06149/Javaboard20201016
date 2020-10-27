@@ -70,7 +70,7 @@ public class Java_board {
 				}
 			}
 			if (str.equals("read")) {
-				System.out.println("게시물 번호 선택 : ");
+				System.out.print("게시물 번호 선택 : ");
 				int targetId = sc.nextInt();
 				Article target = dao.getArticleById(targetId);
 				if (target == null) {
@@ -83,10 +83,20 @@ public class Java_board {
 					System.out.println("내용 : " + target.getBody());
 					System.out.println("===============");
 					while (true) {
-						System.out.println("상세보기 기능을 선택해주세요(1. 댓글 등록, 2. 좋아요, 3. 수정, 4. 삭제, 5. 목록으로) :");
+						System.out.print("상세보기 기능을 선택해주세요(1. 댓글 등록, 2. 좋아요, 3. 수정, 4. 삭제, 5. 목록으로) :");
 						int readStr = sc.nextInt();
+
 						if (readStr == 1) {
-							System.out.println("댓글 기능");
+
+							comment c = new comment();
+
+							System.out.print("댓글 내용 입력 : ");
+							String body = sc.next();
+							c.setBody(body);
+
+							c.setNickname("익명");
+
+							System.out.println("게시물이 등록되었습니다.");
 						} else if (readStr == 2) {
 							System.out.println("좋아요 기능");
 						} else if (readStr == 3) {
