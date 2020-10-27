@@ -1,14 +1,21 @@
 
-public class comment {
-	private String id;
+public class Comment {
+	private int id;
+	private int parentId;
 	private String body;
 	private String nickname;
 	private String regDate;
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
+	}
+	public int getParentId() {
+		return parentId;
+	}
+	public void setParentId(int parentId) {
+		this.parentId = parentId;
 	}
 	public String getBody() {
 		return body;
