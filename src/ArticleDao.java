@@ -4,16 +4,16 @@ import java.util.Date;
 
 public class ArticleDao {
 
-	private static ArrayList<Article> articles;
+	private ArrayList<Article> articles;
 	private int no = 4;
 
 	public ArticleDao() {
 
 		articles = new ArrayList<>();
 
-		Article a1 = new Article(1, "力格1", "郴侩1", "劳疙", getCurrentDate());
-		Article a2 = new Article(2, "力格2", "郴侩2", "劳疙", getCurrentDate());
-		Article a3 = new Article(3, "力格3", "郴侩3", "劳疙", getCurrentDate());
+		Article a1 = new Article(1, "鞝滊1", "雮挫毄1", "鞚惦獏", getCurrentDate());
+		Article a2 = new Article(2, "鞝滊2", "雮挫毄2", "鞚惦獏", getCurrentDate());
+		Article a3 = new Article(3, "鞝滊3", "雮挫毄3", "鞚惦獏", getCurrentDate());
 
 		articles.add(a1);
 		articles.add(a2);
@@ -54,8 +54,8 @@ public class ArticleDao {
 		return searchedArticles;
 	}
 
-	// Article 滚傈
-	public static Article getArticleById(int targetId) {
+	// Article 氩勳爠
+	public Article getArticleById(int targetId) {
 		for (int i = 0; i < articles.size(); i++) {
 			int id = articles.get(i).getId();
 
