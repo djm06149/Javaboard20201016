@@ -3,36 +3,44 @@ import java.util.Scanner;
 
 public class Java_board {
 
+	static MemberDao memberDao = new MemberDao();
 	static CommentDao CommentDao = new CommentDao();
 	static ArticleDao articleDao = new ArticleDao();
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
+		Member loginedMember = null;
 
 		while (true) {
-			System.out.print("ëª…ë ¹ì–´ ì…ë ¥: ");
+			if(loginedMember == null) {
+				System.out.print("¸í·É¾î ÀÔ·Â: ");				
+			} else {
+				System.out.println("¸í·É¾î ÀÔ·Â[" + loginedMember.getLoginId() + "(" +loginedMember.getNickname()+ ")" +"] :");
+			}
+			
+			
 			String str = sc.next();
 
 			if (str.equals("exit")) {
-				System.out.println("í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
+				System.out.println("ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
 				break;
 			}
 			if (str.equals("add")) {
 
 				Article a = new Article();
 
-				System.out.print("ê²Œì‹œë¬¼ ì œëª© ì…ë ¥ : ");
+				System.out.print("°Ô½Ã¹° Á¦¸ñ ÀÔ·Â : ");
 				String title = sc.next();
 				a.setTitle(title);
 
-				System.out.print("ê²Œì‹œë¬¼ ë‚´ìš© ì…ë ¥ : ");
+				System.out.print("°Ô½Ã¹° ³»¿ë ÀÔ·Â : ");
 				String body = sc.next();
 				a.setBody(body);
 
-				a.setNickname("ìµëª…");
+				a.setNickname("ÀÍ¸í");
 
 				articleDao.insertArticle(a);
-				System.out.println("ê²Œì‹œë¬¼ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
+				System.out.println("°Ô½Ã¹°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
 			}
 			if (str.equals("list")) {
 				ArrayList<Article> articles = articleDao.getArticles();
@@ -41,15 +49,15 @@ public class Java_board {
 			}
 			if (str.equals("update")) {
 
-				System.out.println("ìˆ˜ì •í•  ê²Œì‹œë¬¼ ì„ íƒ : ");
+				System.out.println("¼öÁ¤ÇÒ °Ô½Ã¹° ¼±ÅÃ : ");
 				int targetId = sc.nextInt();
 				Article target = articleDao.getArticleById(targetId);
 				if (target == null) {
-					System.out.println("ì—†ëŠ” ê²Œì‹œë¬¼ì…ë‹ˆë‹¤.");
+					System.out.println("¾ø´Â °Ô½Ã¹°ÀÔ´Ï´Ù.");
 				} else {
-					System.out.println("ê²Œì‹œë¬¼ ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
+					System.out.println("°Ô½Ã¹° Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
 					String newTitle = sc.next();
-					System.out.println("ê²Œì‹œë¬¼ ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
+					System.out.println("°Ô½Ã¹° ³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
 					String newBody = sc.next();
 
 					target.setTitle(newTitle);
@@ -59,50 +67,50 @@ public class Java_board {
 				}
 			}
 			if (str.equals("delete")) {
-				System.out.println("ì‚­ì œí•  ê²Œì‹œë¬¼ ì„ íƒ : ");
+				System.out.println("»èÁ¦ÇÒ °Ô½Ã¹° ¼±ÅÃ : ");
 				ArrayList<Article> articles = articleDao.getArticles();
 				int targetId = sc.nextInt();
 				Article target = articleDao.getArticleById(targetId);
 				if (target == null) {
-					System.out.println("ê²Œì‹œë¬¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+					System.out.println("°Ô½Ã¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
 				} else {
 					articleDao.removeArticle(target);
 				}
 			}
 			if (str.equals("read")) {
-				System.out.print("ê²Œì‹œë¬¼ ë²ˆí˜¸ ì„ íƒ : ");
+				System.out.print("°Ô½Ã¹° ¹øÈ£ ¼±ÅÃ : ");
 				int targetId = sc.nextInt();
 				Article target = articleDao.getArticleById(targetId);
 				if (target == null) {
-					System.out.println("ê²Œì‹œë¬¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+					System.out.println("°Ô½Ã¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
 				} else {
 					target.setHit(target.getHit() + 1);
 					printArticle(target);
 
 					while (true) {
-						System.out.print("ìƒì„¸ë³´ê¸° ê¸°ëŠ¥ì„ ì„ íƒí•´ì£¼ì„¸ìš”(1. ëŒ“ê¸€ ë“±ë¡, 2. ì¢‹ì•„ìš”, 3. ìˆ˜ì •, 4. ì‚­ì œ, 5. ëª©ë¡ìœ¼ë¡œ) :");
+						System.out.print("»ó¼¼º¸±â ±â´ÉÀ» ¼±ÅÃÇØÁÖ¼¼¿ä(1. ´ñ±Û µî·Ï, 2. ÁÁ¾Æ¿ä, 3. ¼öÁ¤, 4. »èÁ¦, 5. ¸ñ·ÏÀ¸·Î) :");
 						int readStr = sc.nextInt();
 
 						if (readStr == 1) {
 
 							Comment c = new Comment();
 
-							System.out.print("ëŒ“ê¸€ ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”:");
+							System.out.print("´ñ±Û ³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä:");
 							String body = sc.next();
 							c.setParentId(target.getId());
 							c.setBody(body);
-							c.setNickname("ìµëª…");
+							c.setNickname("ÀÍ¸í");
 
 							CommentDao.insertComment(c);
-							System.out.println("ëŒ“ê¸€ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
+							System.out.println("´ñ±ÛÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
 							printArticle(target);
 
 						} else if (readStr == 2) {
-							System.out.println("ì¢‹ì•„ìš” ê¸°ëŠ¥");
+							System.out.println("ÁÁ¾Æ¿ä ±â´É");
 						} else if (readStr == 3) {
-							System.out.println("ìˆ˜ì • ê¸°ëŠ¥");
+							System.out.println("¼öÁ¤ ±â´É");
 						} else if (readStr == 4) {
-							System.out.println("ì‚­ì œ ê¸°ëŠ¥");
+							System.out.println("»èÁ¦ ±â´É");
 						} else if (readStr == 5) {
 							break;
 						}
@@ -110,10 +118,10 @@ public class Java_board {
 				}
 			}
 			if (str.equals("search")) {
-				System.out.print("ê²€ìƒ‰í•­ëª©ì„ ì„ íƒí•´ì£¼ì„¸ìš” (1. ì œëª© 2. ë‚´ìš© 3. ì œëª© + ë‚´ìš© 4. ì‘ì„±ì) : ");
+				System.out.print("°Ë»öÇ×¸ñÀ» ¼±ÅÃÇØÁÖ¼¼¿ä (1. Á¦¸ñ 2. ³»¿ë 3. Á¦¸ñ + ³»¿ë 4. ÀÛ¼ºÀÚ) : ");
 
 				int flag = sc.nextInt();
-				System.out.print("ê²€ìƒ‰ í‚¤ì›Œë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
+				System.out.print("°Ë»ö Å°¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
 				String keyword = sc.next();
 				ArrayList<Article> searchedArticles;
 
@@ -123,35 +131,52 @@ public class Java_board {
 			}
 			if (str.equals("signup")) {
 				Member m = new Member();
-				System.out.println("=== íšŒì›ê°€ì…ì„ ì‹œì‘í•©ë‹ˆë‹¤ ===");
+				System.out.println("=== È¸¿ø°¡ÀÔÀ» ½ÃÀÛÇÕ´Ï´Ù ===");
 
-				System.out.print("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+				System.out.print("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
 				String id = sc.next();
 				m.setLoginId(id);
 
-				System.out.print("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš” : ");
+				System.out.print("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä : ");
 				String pw = sc.next();
 				m.setLoginPw(pw);
 
-				System.out.print("ë‹‰ë„¤ì„ì„ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
+				System.out.print("´Ğ³×ÀÓÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
 				String nickname = sc.next();
 				m.setNickname(nickname);
 
-//				articleDao.insertArticle(a);
-				System.out.println("=== íšŒì›ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤ ===");
+				memberDao.insertMember(m);
+				System.out.println("=== È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù ===");
+
+			}
+			if (str.equals("signin")) {
+				System.out.print("¾ÆÀÌµğ : ");
+				String id = sc.next();
+
+				System.out.print("ºñ¹Ğ¹øÈ£ : ");
+				String pw = sc.next();
+
+				Member member = memberDao.getMemberByLoginIdAndLoginPw(id, pw);
+				if (member == null) {
+					System.out.println("ºñ¹Ğ¹øÈ£¸¦ Æ²·È°Å³ª Àß¸øµÈ È¸¿øÁ¤º¸ÀÔ´Ï´Ù.");
+				} else {
+					loginedMember = member;
+					System.out.println(loginedMember.getNickname() + "´Ô ¾È³çÇÏ¼¼¿ä!!");
+				}
 
 			}
 		}
+
 	}
 
 	private static void printArticles(ArrayList<Article> articleList) {
 		for (int i = 0; i < articleList.size(); i++) {
 			Article article = articleList.get(i);
-			System.out.println("ë²ˆí˜¸ : " + article.getId());
-			System.out.println("ì œëª© : " + article.getTitle());
-			System.out.println("ì‘ì„±ì : " + article.getNickname());
-			System.out.println("ë“±ë¡ë‚ ì§œ : " + article.getRegDate());
-			System.out.println("ì¡°íšŒìˆ˜ : " + article.getHit());
+			System.out.println("¹øÈ£ : " + article.getId());
+			System.out.println("Á¦¸ñ : " + article.getTitle());
+			System.out.println("ÀÛ¼ºÀÚ : " + article.getNickname());
+			System.out.println("µî·Ï³¯Â¥ : " + article.getRegDate());
+			System.out.println("Á¶È¸¼ö : " + article.getHit());
 			System.out.println("======================");
 
 		}
@@ -160,22 +185,22 @@ public class Java_board {
 	private static void printComments(ArrayList<Comment> commentList) {
 		for (int i = 0; i < commentList.size(); i++) {
 			Comment comment = commentList.get(i);
-			System.out.println("ë‚´ìš© : " + comment.getBody());
-			System.out.println("ì‘ì„±ì : " + comment.getNickname());
-			System.out.println("ë“±ë¡ë‚ ì§œ : " + comment.getRegDate());
+			System.out.println("³»¿ë : " + comment.getBody());
+			System.out.println("ÀÛ¼ºÀÚ : " + comment.getNickname());
+			System.out.println("µî·Ï³¯Â¥ : " + comment.getRegDate());
 			System.out.println("===================");
 		}
 	}
 
 	private static void printArticle(Article target) {
 		System.out.println("==== " + target.getId() + " ====");
-		System.out.println("ë²ˆí˜¸ : " + target.getId());
-		System.out.println("ì œëª© : " + target.getTitle());
-		System.out.println("ë‚´ìš© : " + target.getBody());
-		System.out.println("ë“±ë¡ë‚ ì§œ : " + target.getRegDate());
-		System.out.println("ì¡°íšŒìˆ˜ : " + target.getHit());
+		System.out.println("¹øÈ£ : " + target.getId());
+		System.out.println("Á¦¸ñ : " + target.getTitle());
+		System.out.println("³»¿ë : " + target.getBody());
+		System.out.println("µî·Ï³¯Â¥ : " + target.getRegDate());
+		System.out.println("Á¶È¸¼ö : " + target.getHit());
 		System.out.println("===============");
-		System.out.println("================ëŒ“ê¸€==============");
+		System.out.println("================´ñ±Û==============");
 
 		ArrayList<Comment> comments = CommentDao.getCommentsByParentId(target.getId());
 		printComments(comments);

@@ -1,4 +1,3 @@
-
 public class Article {
 
 	private int id;
@@ -7,7 +6,6 @@ public class Article {
 	private String regDate;
 	private String nickname;
 	private int hit;
-
 
 	public Article(int id, String title, String body, String nickname, String regDate) {
 		this.id = id;

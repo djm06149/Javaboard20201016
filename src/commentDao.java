@@ -9,9 +9,9 @@ public class CommentDao {
 	public CommentDao() {
 		comments = new ArrayList<>(); 
 //		replies = new ArrayList<>();
-//		Reply a1 = new Reply(1, "ì•ˆë…•í•˜ì„¸ìš”", "ë‚´ìš©1", "ìµëª…", getCurrentDate());
-//		Reply a2 = new Reply(2, "ë°˜ê°‘ìŠµë‹ˆë‹¤.", "ë‚´ìš©2", "ìµëª…", getCurrentDate());
-//		Reply a3 = new Reply(3, "ì•ˆë…•", "ë‚´ìš©3", "ìµëª…", getCurrentDate());
+//		Reply a1 = new Reply(1, "¾È³çÇÏ¼¼¿ä", "³»¿ë1", "ÀÍ¸í", getCurrentDate());
+//		Reply a2 = new Reply(2, "¹İ°©½À´Ï´Ù.", "³»¿ë2", "ÀÍ¸í", getCurrentDate());
+//		Reply a3 = new Reply(3, "¾È³ç", "³»¿ë3", "ÀÍ¸í", getCurrentDate());
 //
 //		replies.add(a1);
 //		replies.add(a2);
@@ -54,7 +54,7 @@ public class CommentDao {
 //
 //	}
 //
-//	// Article ë²„ì „
+//	// Article ¹öÀü
 //	public Article getArticleById(int targetId) {
 //		for (int i = 0; i < articles.size(); i++) {
 //			int id = articles.get(i).getId();
@@ -88,7 +88,7 @@ public class CommentDao {
 //
 //		for (int i = 0; i < articles.size(); i++) {
 //			Article article = articles.get(i);
-//			String str = article.getBody(); // ê° ê²Œì‹œë¬¼ ì œëª©
+//			String str = article.getBody(); // °¢ °Ô½Ã¹° Á¦¸ñ
 //			if (str.contains(keyword)) {
 //				searchedArticles.add(article);
 //			}
