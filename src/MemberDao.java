@@ -1,4 +1,3 @@
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,9 +8,9 @@ public class MemberDao {
 
 	public MemberDao() {
 		members = new ArrayList<>();
-//		Article a1 = new Article(1, "¾È³çÇÏ¼¼¿ä", "³»¿ë1", "ÀÍ¸í", getCurrentDate());
-//		Article a2 = new Article(2, "¹İ°©½À´Ï´Ù.", "³»¿ë2", "ÀÍ¸í", getCurrentDate());
-//		Article a3 = new Article(3, "¾È³ç", "³»¿ë3", "ÀÍ¸í", getCurrentDate());
+//		Article a1 = new Article(1, "ì•ˆë…•í•˜ì„¸ìš”", "ë‚´ìš©1", "ìµëª…", getCurrentDate());
+//		Article a2 = new Article(2, "ë°˜ê°‘ìŠµë‹ˆë‹¤.", "ë‚´ìš©2", "ìµëª…", getCurrentDate());
+//		Article a3 = new Article(3, "ì•ˆë…•", "ë‚´ìš©3", "ìµëª…", getCurrentDate());
 
 //		articles.add(a1);
 //		articles.add(a2);
@@ -35,14 +34,14 @@ public class MemberDao {
 	}
 
 	public Member getMemberByLoginIdAndLoginPw(String id, String pw) {
-		
-		for(int i = 0; i < members.size(); i++) {
+
+		for (int i = 0; i < members.size(); i++) {
 			Member m = members.get(i);
-			if(m.getLoginId().equals(id) && m.getLoginPw().equals(pw)) {
+			if (m.getLoginId().equals(id) && m.getLoginPw().equals(pw)) {
 				return m;
 			}
 		}
-		
+
 		return null;
 	}
 }
