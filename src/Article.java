@@ -1,26 +1,30 @@
+import java.util.ArrayList;
+
 public class Article {
 
 	private int id;
 	private String title;
 	private String body;
 	private String regDate;
-	private String nickname;
+	private int mid;
 	private int hit;
 
-	public Article(int id, String title, String body, String nickname, String regDate) {
+
+
+	public Article(int id, String title, String body, int mid, String regDate) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
 		this.regDate = regDate;
-		this.nickname = nickname;
+		this.mid = mid;
 	}
 
-	public String getNickname() {
-		return nickname;
+	public int getMid() {
+		return mid;
 	}
 
-	public void setNickname(String nickname) {
-		this.nickname = nickname;
+	public void setMid(int mid) {
+		this.mid = mid;
 	}
 
 	public int getHit() {
@@ -76,7 +80,7 @@ public class Article {
 		} else if (flag == 3) {
 			str = this.getTitle() + this.getBody();
 		} else {
-			str = this.getNickname();
+			//str = this.getMid() + "";
 		}
 
 		return str;
