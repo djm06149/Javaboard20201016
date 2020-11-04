@@ -6,6 +6,7 @@ public class App {
 	MemberDao memberDao = new MemberDao();
 	CommentDao commentDao = new CommentDao();
 	ArticleDao articleDao = new ArticleDao();
+	LikeDao likeDao = new LikeDao();
 	Member loginedMember = null;
 
 	public void start() {
@@ -115,20 +116,24 @@ public class App {
 							printArticle(target);
 
 						} else if (readCmd == 2) {
-							
+
 							if (!isLogin()) {
 								continue;
 							}
-							
-							int likeFlag = 0; //0이면 체크, 1이면 해제
-							if(likeFlag == 0) {
-								
-								System.out.println("해당 게시물을 좋아합니다.");
-								
+
+							Like rst = likeDao.getLikeByArticleIdAndMemberId(target.getId(), loginedMember.getId());
+
+							if (rst == null) {
+								// 해제
+								Like like = new Like(target.getId(), loginedMember.getId());
+								likeDao.insertLike(like);
+								System.out.println("좋아요를 체크했습니다.");
+
 							} else {
-								System.out.println("해당 게시물 좋아요를 해제합니다.");
+								likeDao.removeLike(rst);
+								System.out.println("좋아요를 해제했습니다.");
 							}
-							
+
 						} else if (readCmd == 3) {
 
 							if (!isLogin() || isMyArticle(target)) {
@@ -153,7 +158,7 @@ public class App {
 
 							articleDao.removeArticle(target);
 							break;
-							
+
 						} else if (readCmd == 5) {
 							break;
 						}
@@ -216,6 +221,14 @@ public class App {
 				System.out.println("로그아웃 되셨습니다.");
 
 			}
+			if(cmd.equals("article sort")) {
+				System.out.print("정렬대상을 선택해주세요.(like : 좋아요, hit : 조회수)");
+				String sort1  = sc.nextLine();
+
+				System.out.print("정렬방법을 선택해주세요.(asc : 오름차순, desc : 내림차순)");
+				String sort2 = sc.nextLine();
+				
+			}
 		}
 	}
 
@@ -232,7 +245,7 @@ public class App {
 		}
 	}
 
-	private void printReplies(ArrayList<Comment> commentList) {
+	private void printComments(ArrayList<Comment> commentList) {
 		for (int i = 0; i < commentList.size(); i++) {
 			Comment comment = commentList.get(i);
 			System.out.println("내용 : " + comment.getBody());
@@ -251,12 +264,13 @@ public class App {
 		System.out.println("작성자 : " + target.getBody());
 		System.out.println("등록날짜 : " + target.getRegDate());
 		System.out.println("조회수 : " + target.getHit());
-//		System.out.println("좋아요 : " + target.getLike());
+		int likeCnt = likeDao.getLikeCount(target.getId());
+		System.out.println("좋아요 : " + likeCnt);
 		System.out.println("===============");
 		System.out.println("================댓글==============");
 
 		ArrayList<Comment> comments = commentDao.getCommentsByParentId(target.getId());
-		printReplies(comments);
+		printComments(comments);
 	}
 
 	private boolean isLogin() {
