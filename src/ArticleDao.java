@@ -11,9 +11,9 @@ public class ArticleDao {
 
 		articles = new ArrayList<>();
 
-		Article a1 = new Article(1, "제목1", "내용1", 1, Util.getCurrentDate());
-		Article a2 = new Article(2, "제목2", "내용2", 2, Util.getCurrentDate());
-		Article a3 = new Article(3, "제목3", "내용3", 3, Util.getCurrentDate());
+		Article a1 = new Article(1, "제목1", "내용1", 1, Util.getCurrentDate(), 100);
+		Article a2 = new Article(2, "제목2", "내용2", 2, Util.getCurrentDate(), 30);
+		Article a3 = new Article(3, "제목3", "내용3", 3, Util.getCurrentDate(), 50);
 
 		articles.add(a1);
 		articles.add(a2);
@@ -32,7 +32,6 @@ public class ArticleDao {
 	public void removeArticle(Article a) {
 		articles.remove(a);
 	}
-
 
 	public ArrayList<Article> getSearchedArticlesByFlag(int flag, String keyword) {
 		ArrayList<Article> searchedArticles = new ArrayList<>();

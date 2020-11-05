@@ -5,7 +5,7 @@ public class Member {
 	private String loginPw;
 	private String nickname;
 	private String regDate;
-	
+
 	public Member() {
 
 	}

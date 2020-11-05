@@ -25,7 +25,6 @@ public class MemberDao {
 		members.add(m);
 	}
 
-
 	public Member getMemberById(int id) {
 		for (int i = 0; i < members.size(); i++) {
 			Member m = members.get(i);

@@ -9,14 +9,17 @@ public class Article {
 	private int mid;
 	private int hit;
 
+	public Article() {
 
+	}
 
-	public Article(int id, String title, String body, int mid, String regDate) {
+	public Article(int id, String title, String body, int mid, String regDate, int hit) {
 		this.id = id;
 		this.title = title;
 		this.body = body;
 		this.regDate = regDate;
 		this.mid = mid;
+		this.hit = hit;
 	}
 
 	public int getMid() {
@@ -41,10 +44,6 @@ public class Article {
 
 	public void setRegDate(String regDate) {
 		this.regDate = regDate;
-	}
-
-	public Article() {
-
 	}
 
 	public int getId() {
@@ -80,7 +79,7 @@ public class Article {
 		} else if (flag == 3) {
 			str = this.getTitle() + this.getBody();
 		} else {
-			//str = this.getMid() + "";
+			// str = this.getMid() + "";
 		}
 
 		return str;

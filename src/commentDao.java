@@ -8,7 +8,6 @@ public class CommentDao {
 
 	public CommentDao() {
 		comments = new ArrayList<>();
-//		replies = new ArrayList<>();
 //		Reply a1 = new Reply(1, "안녕하세요", "내용1", "익명", getCurrentDate());
 //		Reply a2 = new Reply(2, "반갑습니다.", "내용2", "익명", getCurrentDate());
 //		Reply a3 = new Reply(3, "안녕", "내용3", "익명", getCurrentDate());
