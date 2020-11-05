@@ -11,9 +11,9 @@ public class ArticleDao {
 
 		articles = new ArrayList<>();
 
-		Article a1 = new Article(1, "ì œëª©1", "ë‚´ìš©1", 1, Util.getCurrentDate(), 100);
-		Article a2 = new Article(2, "ì œëª©2", "ë‚´ìš©2", 2, Util.getCurrentDate(), 30);
-		Article a3 = new Article(3, "ì œëª©3", "ë‚´ìš©3", 3, Util.getCurrentDate(), 50);
+		Article a1 = new Article(1, "Á¦¸ñ1", "³»¿ë1", 1, Util.getCurrentDate(), 100);
+		Article a2 = new Article(2, "Á¦¸ñ2", "³»¿ë2", 2, Util.getCurrentDate(), 30);
+		Article a3 = new Article(3, "Á¦¸ñ3", "³»¿ë3", 3, Util.getCurrentDate(), 50);
 
 		articles.add(a1);
 		articles.add(a2);
@@ -46,7 +46,7 @@ public class ArticleDao {
 		return searchedArticles;
 	}
 
-	// Article ë²„ì „
+	// Article ¹öÀü
 	public Article getArticleById(int targetId) {
 		for (int i = 0; i < articles.size(); i++) {
 			int id = articles.get(i).getId();

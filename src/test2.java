@@ -14,9 +14,9 @@ public class test2 {
 		list.add(3);
 
 		printList(list);
-		Collections.sort(list); // ì˜¤ë¦„ì°¨ìˆœ
+		Collections.sort(list); // ¿À¸§Â÷¼ø
 		printList(list);
-		Collections.sort(list, Collections.reverseOrder()); // ë‚´ë¦¼ì°¨ìˆœ
+		Collections.sort(list, Collections.reverseOrder()); // ³»¸²Â÷¼ø
 		printList(list);
 
 		nlist.add(new Num(4, 5));
@@ -49,11 +49,11 @@ class MyComparator implements Comparator<Num> {
 
 	@Override
 	public int compare(Num o1, Num o2) {
-		if (o1.n2 > o2.n2) { // ì™¼ìª½ ê°’ì´ ë” í¬ë©´ ìë¦¬ë¥¼ ë°”ê¿”ë¼ -> ì˜¤ë¦„ì°¨ìˆœ <-> ì˜¤ë¥¸ìª½ ê°’ì´ ë” í´ë•Œ ë°”ê¾¸ì§€ ë§ì•„ë¼
-			return 0; // 0, 1 ë°”ê¿”ë¼
+		if (o1.n2 > o2.n2) { // ¿ŞÂÊ °ªÀÌ ´õ Å©¸é ÀÚ¸®¸¦ ¹Ù²ã¶ó -> ¿À¸§Â÷¼ø <-> ¿À¸¥ÂÊ °ªÀÌ ´õ Å¬¶§ ¹Ù²ÙÁö ¸»¾Æ¶ó
+			return 1; // 0, 1 ¹Ù²ã¶ó
 		}
 
-		return -1; // -1 ë°”ê¾¸ì§€ ë§ì•„ë¼
+		return -1; // -1 ¹Ù²ÙÁö ¸»¾Æ¶ó
 	}
 
 }
