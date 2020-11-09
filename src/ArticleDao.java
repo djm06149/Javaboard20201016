@@ -11,13 +11,23 @@ public class ArticleDao {
 
 		articles = new ArrayList<>();
 
-		Article a1 = new Article(1, "ì œëª©1", "ë‚´ìš©1", 1, Util.getCurrentDate(), 100, 30);
-		Article a2 = new Article(2, "ì œëª©2", "ë‚´ìš©2", 2, Util.getCurrentDate(), 30, 20);
-		Article a3 = new Article(3, "ì œëª©3", "ë‚´ìš©3", 3, Util.getCurrentDate(), 50, 40);
+		Article a1 = new Article(1, "Á¦¸ñ1", "³»¿ë1", 1, Util.getCurrentDate(), 100, 30);
+		Article a2 = new Article(2, "Á¦¸ñ2", "³»¿ë2", 2, Util.getCurrentDate(), 30, 20);
+		Article a3 = new Article(3, "Á¦¸ñ3", "³»¿ë3", 3, Util.getCurrentDate(), 50, 40);
 
 		articles.add(a1);
 		articles.add(a2);
 		articles.add(a3);
+
+		for (int i = 1; i <= 50; i++) {
+			Article a4 = new Article();
+			a4.setId(i);
+			a4.setTitle("Á¦¸ñ" + i);
+			a4.setBody("³»¿ë" + i);
+			a4.setMid(1);
+
+			articles.add(a4);
+		}
 
 	}
 
@@ -46,7 +56,7 @@ public class ArticleDao {
 		return searchedArticles;
 	}
 
-	// Article ë²„ì „
+	// Article ¹öÀü
 	public Article getArticleById(int targetId) {
 		for (int i = 0; i < articles.size(); i++) {
 			int id = articles.get(i).getId();

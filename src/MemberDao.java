@@ -6,13 +6,13 @@ public class MemberDao {
 
 	public MemberDao() {
 		members = new ArrayList<>();
-		Member a1 = new Member(1, "kim123", "k1234", "±è¼­¹æ", Util.getCurrentDate());
-		Member a2 = new Member(2, "lee123", "l1234", "ÀÌ¼ø½Å", Util.getCurrentDate());
-		Member a3 = new Member(3, "hong123", "h1234", "È«±æµ¿", Util.getCurrentDate());
+		Member m1 = new Member(1, "hong123", "h1234", "홍길동", Util.getCurrentDate());
+		Member m2 = new Member(2, "lee123", "l1234", "이순신", Util.getCurrentDate());
+		Member m3 = new Member(3, "kim123", "k1234", "김서방", Util.getCurrentDate());
 
-		members.add(a1);
-		members.add(a2);
-		members.add(a3);
+		members.add(m1);
+		members.add(m2);
+		members.add(m3);
 	}
 
 	public void insertMember(Member m) {
