@@ -16,20 +16,20 @@ public class App {
 
 		while (true) {
 			if (loginedMember == null) {
-				System.out.print("¸í·É¾î ÀÔ·Â : ");
+				System.out.print("ëª…ë ¹ì–´ ì…ë ¥ : ");
 			} else {
 				System.out.print(
-						"¸í·É¾î ÀÔ·Â[" + loginedMember.getLoginId() + "(" + loginedMember.getNickname() + ")" + "] : ");
+						"ëª…ë ¹ì–´ ì…ë ¥[" + loginedMember.getLoginId() + "(" + loginedMember.getNickname() + ")" + "] : ");
 			}
 			String cmd = sc.nextLine();
 			if (cmd.equals("exit")) {
-				System.out.println("Á¾·á");
+				System.out.println("ì¢…ë£Œ");
 				break;
 			}
 			if (cmd.equals("help")) {
-				System.out.println("article [add: °Ô½Ã¹° Ãß°¡ / list : °Ô½Ã¹° ¸ñ·Ï Á¶È¸ / read : °Ô½Ã¹° Á¶È¸ / search : °Ë»ö]");
+				System.out.println("article [add: ê²Œì‹œë¬¼ ì¶”ê°€ / list : ê²Œì‹œë¬¼ ëª©ë¡ ì¡°íšŒ / read : ê²Œì‹œë¬¼ ì¡°íšŒ / search : ê²€ìƒ‰]");
 				System.out.println(
-						"member [signup : È¸¿ø°¡ÀÔ / signin : ·Î±×ÀÎ / findpass : ºñ¹Ğ¹øÈ£ Ã£±â / findid : ¾ÆÀÌµğ Ã£±â / logout : ·Î±×¾Æ¿ô / myinfo : ³ªÀÇ Á¤º¸ È®ÀÎ¹× ¼öÁ¤]");
+						"member [signup : íšŒì›ê°€ì… / signin : ë¡œê·¸ì¸ / findpass : ë¹„ë°€ë²ˆí˜¸ ì°¾ê¸° / findid : ì•„ì´ë”” ì°¾ê¸° / logout : ë¡œê·¸ì•„ì›ƒ / myinfo : ë‚˜ì˜ ì •ë³´ í™•ì¸ë° ìˆ˜ì •]");
 			}
 			if (cmd.equals("article add")) {
 
@@ -39,17 +39,17 @@ public class App {
 
 				Article a = new Article();
 
-				System.out.print("°Ô½Ã¹° Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+				System.out.print("ê²Œì‹œë¬¼ ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 				String title = sc.nextLine();
 				a.setTitle(title);
 
-				System.out.print("°Ô½Ã¹° ³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+				System.out.print("ê²Œì‹œë¬¼ ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 				String body = sc.nextLine();
 				a.setBody(body);
 				a.setMid(loginedMember.getId());
 
 				articleDao.insertArticle(a);
-				System.out.println("°Ô½Ã¹°ÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+				System.out.println("ê²Œì‹œë¬¼ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 
 			}
 			if (cmd.equals("article list")) {
@@ -60,17 +60,17 @@ public class App {
 			}
 			if (cmd.equals("article update")) {
 
-				System.out.print("¼öÁ¤ÇÒ °Ô½Ã¹° ¼±ÅÃ : ");
+				System.out.print("ìˆ˜ì •í•  ê²Œì‹œë¬¼ ì„ íƒ : ");
 				int targetId = Integer.parseInt(sc.nextLine());
 
 				Article target = articleDao.getArticleById(targetId);
 				if (target == null) {
-					System.out.println("¾ø´Â °Ô½Ã¹°ÀÔ´Ï´Ù.");
+					System.out.println("ì—†ëŠ” ê²Œì‹œë¬¼ì…ë‹ˆë‹¤.");
 				} else {
-					System.out.print("°Ô½Ã¹° Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+					System.out.print("ê²Œì‹œë¬¼ ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 					String newTitle = sc.nextLine();
 
-					System.out.print("°Ô½Ã¹° ³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+					System.out.print("ê²Œì‹œë¬¼ ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 					String newBody = sc.nextLine();
 
 					target.setTitle(newTitle);
@@ -81,40 +81,40 @@ public class App {
 			}
 			if (cmd.equals("article delete")) {
 				ArrayList<Article> articles = articleDao.getArticles();
-				System.out.print("»èÁ¦ÇÒ °Ô½Ã¹° ¼±ÅÃ : ");
+				System.out.print("ì‚­ì œí•  ê²Œì‹œë¬¼ ì„ íƒ : ");
 				int targetId = Integer.parseInt(sc.nextLine());
 				Article target = articleDao.getArticleById(targetId);
 				if (target == null) {
-					System.out.println("°Ô½Ã¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+					System.out.println("ê²Œì‹œë¬¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				} else {
 					articleDao.removeArticle(target);
 				}
 			}
 			if (cmd.equals("article read")) {
-				System.out.print("»ó¼¼º¸±âÇÒ °Ô½Ã¹° ¼±ÅÃ : ");
+				System.out.print("ìƒì„¸ë³´ê¸°í•  ê²Œì‹œë¬¼ ì„ íƒ : ");
 				int targetId = Integer.parseInt(sc.nextLine());
 				Article target = articleDao.getArticleById(targetId);
 				if (target == null) {
-					System.out.println("°Ô½Ã¹°ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+					System.out.println("ê²Œì‹œë¬¼ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				} else {
 					target.setHit(target.getHit() + 1);
 					printArticle(target);
 
 					while (true) {
-						System.out.print("»ó¼¼º¸±â ±â´ÉÀ» ¼±ÅÃÇØÁÖ¼¼¿ä(1. ´ñ±Û µî·Ï, 2. ÁÁ¾Æ¿ä, 3. ¼öÁ¤, 4. »èÁ¦, 5. ¸ñ·ÏÀ¸·Î) :");
+						System.out.print("ìƒì„¸ë³´ê¸° ê¸°ëŠ¥ì„ ì„ íƒí•´ì£¼ì„¸ìš”(1. ëŒ“ê¸€ ë“±ë¡, 2. ì¢‹ì•„ìš”, 3. ìˆ˜ì •, 4. ì‚­ì œ, 5. ëª©ë¡ìœ¼ë¡œ) :");
 						int readCmd = Integer.parseInt(sc.nextLine());
 						if (readCmd == 1) {
 							Comment c = new Comment();
 
-							System.out.print("´ñ±Û ³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä:");
+							System.out.print("ëŒ“ê¸€ ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš”:");
 							String body = sc.nextLine();
 							c.setParentId(target.getId());
 							c.setBody(body);
-							c.setNickname("ÀÍ¸í");
+							c.setNickname("ìµëª…");
 
 							commentDao.insertComment(c);
 
-							System.out.println("´ñ±ÛÀÌ µî·ÏµÇ¾ú½À´Ï´Ù.");
+							System.out.println("ëŒ“ê¸€ì´ ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤.");
 							printArticle(target);
 
 						} else if (readCmd == 2) {
@@ -130,11 +130,11 @@ public class App {
 								likeDao.insertLike(like);
 								target.setLikeCnt(target.getLikeCnt() + 1);
 
-								System.out.println("ÁÁ¾Æ¿ä¸¦ Ã¼Å©Çß½À´Ï´Ù.");
+								System.out.println("ì¢‹ì•„ìš”ë¥¼ ì²´í¬í–ˆìŠµë‹ˆë‹¤.");
 
 							} else {
 								likeDao.removeLike(rst);
-								System.out.println("ÁÁ¾Æ¿ä¸¦ ÇØÁ¦Çß½À´Ï´Ù.");
+								System.out.println("ì¢‹ì•„ìš”ë¥¼ í•´ì œí–ˆìŠµë‹ˆë‹¤.");
 								target.setLikeCnt(target.getLikeCnt() - 1);
 							}
 
@@ -143,10 +143,10 @@ public class App {
 							if (!isLogin() || isMyArticle(target)) {
 								continue;
 							}
-							System.out.print("°Ô½Ã¹° Á¦¸ñÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+							System.out.print("ê²Œì‹œë¬¼ ì œëª©ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 							String newTitle = sc.nextLine();
 
-							System.out.print("°Ô½Ã¹° ³»¿ëÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+							System.out.print("ê²Œì‹œë¬¼ ë‚´ìš©ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 							String newBody = sc.nextLine();
 
 							target.setTitle(newTitle);
@@ -170,9 +170,9 @@ public class App {
 				}
 			}
 			if (cmd.equals("article search")) {
-				System.out.print("°Ë»ö Ç×¸ñÀ» ¼±ÅÃÇØÁÖ¼¼¿ä (1. Á¦¸ñ, 2. ³»¿ë, 3. Á¦¸ñ + ³»¿ë, 4. ÀÛ¼ºÀÚ) : ");
+				System.out.print("ê²€ìƒ‰ í•­ëª©ì„ ì„ íƒí•´ì£¼ì„¸ìš” (1. ì œëª©, 2. ë‚´ìš©, 3. ì œëª© + ë‚´ìš©, 4. ì‘ì„±ì) : ");
 				int flag = Integer.parseInt(sc.nextLine());
-				System.out.print("°Ë»ö Å°¿öµå¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
+				System.out.print("ê²€ìƒ‰ í‚¤ì›Œë“œë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
 				String keyword = sc.nextLine();
 				ArrayList<Article> searchedArticles;
 
@@ -181,51 +181,51 @@ public class App {
 				printArticles(searchedArticles, 1);
 			}
 			if (cmd.equals("article sort")) {
-				System.out.print("Á¤·Ä ´ë»óÀ» ¼±ÅÃÇØÁÖ¼¼¿ä. (like : ÁÁ¾Æ¿ä,  hit : Á¶È¸¼ö) : ");
+				System.out.print("ì •ë ¬ ëŒ€ìƒì„ ì„ íƒí•´ì£¼ì„¸ìš”. (like : ì¢‹ì•„ìš”,  hit : ì¡°íšŒìˆ˜) : ");
 				String sortType = sc.nextLine();
-				System.out.print("Á¤·Ä¹æ¹ıÀ» ¼±ÅÃÇØÁÖ¼¼¿ä.(asc : ¿À¸§Â÷¼ø, desc : ³»¸²Â÷¼ø) : ");
+				System.out.print("ì •ë ¬ë°©ë²•ì„ ì„ íƒí•´ì£¼ì„¸ìš”.(asc : ì˜¤ë¦„ì°¨ìˆœ, desc : ë‚´ë¦¼ì°¨ìˆœ) : ");
 				String sortOrder = sc.nextLine();
 				MyComparator comp = new MyComparator();
 				comp.sortOrder = sortOrder;
 				comp.sortType = sortType;
-				// Á¶È¸¼ö·Î ¿À¸§Â÷¼ø
+				// ì¡°íšŒìˆ˜ë¡œ ì˜¤ë¦„ì°¨ìˆœ
 				ArrayList<Article> articles = articleDao.getArticles();
 				Collections.sort(articles, comp);
 				printArticles(articles, 1);
 
 			}
 			if (cmd.equals("member signup")) {
-				System.out.println("======== È¸¿ø°¡ÀÔÀ» ÁøÇàÇÕ´Ï´Ù.========");
+				System.out.println("======== íšŒì›ê°€ì…ì„ ì§„í–‰í•©ë‹ˆë‹¤.========");
 				Member m = new Member();
 
-				System.out.print("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+				System.out.print("ì•„ì´ë””ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 				String id = sc.nextLine();
 				m.setLoginId(id);
 
-				System.out.print("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+				System.out.print("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 				String pw = sc.nextLine();
 				m.setLoginPw(pw);
 
-				System.out.print("´Ğ³×ÀÓÀ» ÀÔ·ÂÇØÁÖ¼¼¿ä :");
+				System.out.print("ë‹‰ë„¤ì„ì„ ì…ë ¥í•´ì£¼ì„¸ìš” :");
 				String nick = sc.nextLine();
 				m.setNickname(nick);
 
 				memberDao.insertMember(m);
-				System.out.println("======== È¸¿ø°¡ÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.========");
+				System.out.println("======== íšŒì›ê°€ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤. ========");
 			}
 			if (cmd.equals("member signin")) {
-				System.out.print("¾ÆÀÌµğ :");
+				System.out.print("ì•„ì´ë”” :");
 				String id = sc.nextLine();
 
-				System.out.print("ºñ¹Ğ¹øÈ£ :");
+				System.out.print("ë¹„ë°€ë²ˆí˜¸ :");
 				String pw = sc.nextLine();
 
 				Member member = memberDao.getMemberByLoginIdAndLoginPw(id, pw);
 				if (member == null) {
-					System.out.println("ºñ¹Ğ¹øÈ£¸¦ Æ²·È°Å³ª Àß¸øµÈ È¸¿øÁ¤º¸ÀÔ´Ï´Ù.");
+					System.out.println("ë¹„ë°€ë²ˆí˜¸ë¥¼ í‹€ë ¸ê±°ë‚˜ ì˜ëª»ëœ íšŒì›ì •ë³´ì…ë‹ˆë‹¤.");
 				} else {
 					loginedMember = member;
-					System.out.println(loginedMember.getNickname() + "´Ô ¾È³çÇÏ¼¼¿ä!!");
+					System.out.println(loginedMember.getNickname() + "ë‹˜ ì•ˆë…•í•˜ì„¸ìš”!!");
 				}
 
 			}
@@ -236,7 +236,7 @@ public class App {
 				}
 
 				loginedMember = null;
-				System.out.println("·Î±×¾Æ¿ô µÇ¼Ì½À´Ï´Ù.");
+				System.out.println("ë¡œê·¸ì•„ì›ƒ ë˜ì…¨ìŠµë‹ˆë‹¤.");
 
 			}
 			if (cmd.equals("article page")) {
@@ -244,64 +244,77 @@ public class App {
 				int currentPageNo = 1;
 				printArticles(articles, currentPageNo);
 
+				System.out.println(
+						"í˜ì´ì§• ëª…ë ¹ì–´ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” ((prev : ì´ì „,  next : ë‹¤ìŒ, prevPage : ì´ì „í˜ì´ì§€, nextPage : ë‹¤ìŒí˜ì´ì§€, count : í˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜  go : ì„ íƒ,  back : ë’¤ë¡œê°€ê¸°)");
+
 				while (true) {
 					String pageCmd = sc.nextLine();
 					if (pageCmd.equals("next")) {
 						currentPageNo++;
+					} else if (pageCmd.equals("prev")) {
+						currentPageNo--;
+					} else if (pageCmd.equals("nextPage")) {
+						currentPageNo += 5;
+					} else if (pageCmd.equals("prevPage")) {
+						currentPageNo -= 5;
+					} else if (pageCmd.equals("count")) {
+						System.out.println("ì¶œë ¥í•  ê²Œì‹œë¬¼ì˜ ê°œìˆ˜ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš” : ");
+						int count = sc.nextInt();
 						printArticles(articles, currentPageNo);
+					} else if (pageCmd.equals("go")) {
+						currentPageNo = Integer.parseInt(sc.nextLine());
 					} else if (pageCmd.equals("back")) {
 						break;
 					}
 				}
-
 			}
 		}
 	}
 
 	private void printArticles(ArrayList<Article> articleList, int currentPageNo) {
-		int totalCntOfItems = articleList.size(); // ÀüÃ¼ °Ô½Ã¹° °³¼ö
-		int startPageNo = 1; // ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
-		int itemsCntPerPage = 3; // ÆäÀÌÁö´ç Ãâ·Â °Ô½Ã¹° °³¼ö
-		int pageCntPerBlock = 5; // ÇÑ ÆäÀÌÁö ºí·Ï ´ç ÆäÀÌÁö °³¼ö
-		int endPageNo = (int) Math.ceil((double) totalCntOfItems / itemsCntPerPage); // ¸¶Áö¸· ÆäÀÌÁö ¹øÈ£
+		int totalCntOfItems = articleList.size(); // ì „ì²´ ê²Œì‹œë¬¼ ê°œìˆ˜
+		int startPageNo = 1; // ì‹œì‘ í˜ì´ì§€ ë²ˆí˜¸
+		int itemsCntPerPage = 3; // í˜ì´ì§€ë‹¹ ì¶œë ¥ ê²Œì‹œë¬¼ ê°œìˆ˜
+		int pageCntPerBlock = 5; // í•œ í˜ì´ì§€ ë¸”ë¡ ë‹¹ í˜ì´ì§€ ê°œìˆ˜
+		int endPageNo = (int) Math.ceil((double) totalCntOfItems / itemsCntPerPage); // ë§ˆì§€ë§‰ í˜ì´ì§€ ë²ˆí˜¸
 
-		// ÇöÀç ÆäÀÌÁö°¡ ½ÃÀÛÆäÀÌÁöº¸´Ù ÀÛÀ¸¸é ¾ÈµÊ
+		// í˜„ì¬ í˜ì´ì§€ê°€ ì‹œì‘í˜ì´ì§€ë³´ë‹¤ ì‘ìœ¼ë©´ ì•ˆë¨
 		if (currentPageNo < startPageNo) {
 			currentPageNo = startPageNo;
 		}
-		// ÇöÀç ÆäÀÌÁö°¡ ¸¶Áö¸·ÆäÀÌÁöº¸´Ù Å©¸é ¾ÈµÊ
+		// í˜„ì¬ í˜ì´ì§€ê°€ ë§ˆì§€ë§‰í˜ì´ì§€ë³´ë‹¤ í¬ë©´ ì•ˆë¨
 		if (currentPageNo > endPageNo) {
 			currentPageNo = endPageNo;
 		}
 
-		int currentPageBlock = (int) Math.ceil((double) currentPageNo / pageCntPerBlock); // ÇöÀç ÆäÀÌÁö ºí·Ï
-		int startPageNoInBlock = (currentPageBlock - 1) * pageCntPerBlock + 1; // ÇöÀç ÆäÀÌÁö ºí·ÏÀÇ ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
-		int endPageNoInBlock = startPageNoInBlock + pageCntPerBlock - 1;// // ÇöÀç ÆäÀÌÁö ºí·ÏÀÇ ¸¶Áö¸· ÆäÀÌÁö ¹øÈ£
+		int currentPageBlock = (int) Math.ceil((double) currentPageNo / pageCntPerBlock); // í˜„ì¬ í˜ì´ì§€ ë¸”ë¡
+		int startPageNoInBlock = (currentPageBlock - 1) * pageCntPerBlock + 1; // í˜„ì¬ í˜ì´ì§€ ë¸”ë¡ì˜ ì‹œì‘ í˜ì´ì§€ ë²ˆí˜¸
+		int endPageNoInBlock = startPageNoInBlock + pageCntPerBlock - 1;// // í˜„ì¬ í˜ì´ì§€ ë¸”ë¡ì˜ ë§ˆì§€ë§‰ í˜ì´ì§€ ë²ˆí˜¸
 
-		// ÆäÀÌÁö ¹øÈ£°¡ ¸¶Áö¸· ÆäÀÌÁö¸¦ ³ÑÀ¸¸é ¾ÈµÊ
+		// í˜ì´ì§€ ë²ˆí˜¸ê°€ ë§ˆì§€ë§‰ í˜ì´ì§€ë¥¼ ë„˜ìœ¼ë©´ ì•ˆë¨
 		if (endPageNoInBlock > endPageNo) {
 			endPageNoInBlock = endPageNo;
 		}
-		// ÇØ´ç ÆäÀÌÁöÀÇ °Ô½Ã¹° ¸ñ·ÏÀÇ Ã¹ ÀÎµ¦½º
+		// í•´ë‹¹ í˜ì´ì§€ì˜ ê²Œì‹œë¬¼ ëª©ë¡ì˜ ì²« ì¸ë±ìŠ¤
 		int startIndex = (currentPageNo - 1) * itemsCntPerPage;
 
-		// ÇØ´ç ÆäÀÌÁöÀÇ °Ô½Ã¹° ¸ñ·ÏÀÇ ¸¶Áö¸· ÀÎµ¦½º
+		// í•´ë‹¹ í˜ì´ì§€ì˜ ê²Œì‹œë¬¼ ëª©ë¡ì˜ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤
 		int endIndex = startIndex + itemsCntPerPage;
 
-		// ÆäÀÌÁöÀÇ ¸¶Áö¸· ÀÎµ¦½º°¡ ÀúÀå¼ÒÀÇ ¸¶Áö¸· ÀÎµ¦½ºº¸´Ù Å©¸é ¾ÈµÊ
+		// í˜ì´ì§€ì˜ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ê°€ ì €ì¥ì†Œì˜ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ë³´ë‹¤ í¬ë©´ ì•ˆë¨
 		if (endIndex > totalCntOfItems) {
 			endIndex = totalCntOfItems;
 		}
 		System.out.println(endPageNoInBlock);
 		for (int i = startIndex; i < endIndex; i++) {
 			Article article = articleList.get(i);
-			System.out.println("¹øÈ£ : " + article.getId());
-			System.out.println("Á¦¸ñ : " + article.getTitle());
-			System.out.println("µî·Ï³¯Â¥ : " + article.getRegDate());
+			System.out.println("ë²ˆí˜¸ : " + article.getId());
+			System.out.println("ì œëª© : " + article.getTitle());
+			System.out.println("ë“±ë¡ë‚ ì§œ : " + article.getRegDate());
 			Member regMember = memberDao.getMemberById(article.getMid());
-			System.out.println("ÀÛ¼ºÀÚ : " + article.getMid());
-			System.out.println("Á¶È¸¼ö : " + article.getHit());
-			System.out.println("ÁÁ¾Æ¿ä : " + article.getLikeCnt());
+			System.out.println("ì‘ì„±ì : " + article.getMid());
+			System.out.println("ì¡°íšŒìˆ˜ : " + article.getHit());
+			System.out.println("ì¢‹ì•„ìš” : " + article.getLikeCnt());
 			System.out.println("===================");
 		}
 		for (int i = startPageNoInBlock; i <= endPageNoInBlock; i++) {
@@ -319,25 +332,25 @@ public class App {
 	private void printComments(ArrayList<Comment> commentList) {
 		for (int i = 0; i < commentList.size(); i++) {
 			Comment comment = commentList.get(i);
-			System.out.println("³»¿ë : " + comment.getBody());
-			System.out.println("ÀÛ¼ºÀÚ : " + comment.getNickname());
-			System.out.println("µî·Ï³¯Â¥ : " + comment.getRegDate());
+			System.out.println("ë‚´ìš© : " + comment.getBody());
+			System.out.println("ì‘ì„±ì : " + comment.getNickname());
+			System.out.println("ë“±ë¡ë‚ ì§œ : " + comment.getRegDate());
 			System.out.println("===================");
 		}
 	}
 
 	private void printArticle(Article target) {
 		System.out.println("==== " + target.getId() + " ====");
-		System.out.println("¹øÈ£ : " + target.getId());
-		System.out.println("Á¦¸ñ : " + target.getTitle());
-		System.out.println("³»¿ë : " + target.getBody());
+		System.out.println("ë²ˆí˜¸ : " + target.getId());
+		System.out.println("ì œëª© : " + target.getTitle());
+		System.out.println("ë‚´ìš© : " + target.getBody());
 		Member regMember = memberDao.getMemberById(target.getMid());
-		System.out.println("ÀÛ¼ºÀÚ : " + target.getBody());
-		System.out.println("µî·Ï³¯Â¥ : " + target.getRegDate());
-		System.out.println("Á¶È¸¼ö : " + target.getHit());
-		System.out.println("ÁÁ¾Æ¿ä : " + target.getLikeCnt());
+		System.out.println("ì‘ì„±ì : " + target.getBody());
+		System.out.println("ë“±ë¡ë‚ ì§œ : " + target.getRegDate());
+		System.out.println("ì¡°íšŒìˆ˜ : " + target.getHit());
+		System.out.println("ì¢‹ì•„ìš” : " + target.getLikeCnt());
 		System.out.println("===============");
-		System.out.println("================´ñ±Û==============");
+		System.out.println("================ëŒ“ê¸€==============");
 
 		ArrayList<Comment> comments = commentDao.getCommentsByParentId(target.getId());
 		printComments(comments);
@@ -345,7 +358,7 @@ public class App {
 
 	private boolean isLogin() {
 		if (loginedMember == null) {
-			System.out.println("·Î±×ÀÎÀÌ ÇÊ¿äÇÑ ±â´ÉÀÔ´Ï´Ù.");
+			System.out.println("ë¡œê·¸ì¸ì´ í•„ìš”í•œ ê¸°ëŠ¥ì…ë‹ˆë‹¤.");
 			return false;
 		} else {
 			return true;
@@ -355,7 +368,7 @@ public class App {
 	private boolean isMyArticle(Article article) {
 
 		if (loginedMember.getId() != article.getMid()) {
-			System.out.println("ÀÚ½ÅÀÇ °Ô½Ã¹°¸¸ ¼öÁ¤°¡´ÉÇÕ´Ï´Ù.");
+			System.out.println("ìì‹ ì˜ ê²Œì‹œë¬¼ë§Œ ìˆ˜ì •ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 			return false;
 		}
 
@@ -393,5 +406,4 @@ public class App {
 			}
 		}
 	}
-
 }

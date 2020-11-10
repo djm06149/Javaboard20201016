@@ -10,52 +10,52 @@ public class test3 {
 		for (int i = 1; i <= 50; i++) {
 			Article a1 = new Article();
 			a1.setId(i);
-			a1.setTitle("Á¦¸ñ" + i);
-			a1.setBody("³»¿ë" + i);
+			a1.setTitle("ì œëª©" + i);
+			a1.setBody("ë‚´ìš©" + i);
 
 			articles.add(a1);
 		}
 
 		Scanner sc = new Scanner(System.in);
-		int currentPageNo = 123; // ÇöÀç ÆäÀÌÁö
-		int totalCntOfItems = articles.size(); // ÀüÃ¼ °Ô½Ã¹° °³¼ö
-		int startPageNo = 1; // ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
-		int itemsCntPerPage = 3; // ÆäÀÌÁö´ç Ãâ·Â °Ô½Ã¹° °³¼ö
-		int pageCntPerBlock = 5; // ÇÑ ÆäÀÌÁö ºí·Ï ´ç ÆäÀÌÁö °³¼ö
-		int endPageNo = (int) Math.ceil((double) totalCntOfItems / itemsCntPerPage); // ¸¶Áö¸· ÆäÀÌÁö ¹øÈ£
+		int currentPageNo = 123; // í˜„ì¬ í˜ì´ì§€
+		int totalCntOfItems = articles.size(); // ì „ì²´ ê²Œì‹œë¬¼ ê°œìˆ˜
+		int startPageNo = 1; // ì‹œì‘ í˜ì´ì§€ ë²ˆí˜¸
+		int itemsCntPerPage = 3; // í˜ì´ì§€ë‹¹ ì¶œë ¥ ê²Œì‹œë¬¼ ê°œìˆ˜
+		int pageCntPerBlock = 5; // í•œ í˜ì´ì§€ ë¸”ë¡ ë‹¹ í˜ì´ì§€ ê°œìˆ˜
+		int endPageNo = (int) Math.ceil((double) totalCntOfItems / itemsCntPerPage); // ë§ˆì§€ë§‰ í˜ì´ì§€ ë²ˆí˜¸
 
-		// ÇöÀç ÆäÀÌÁö°¡ ½ÃÀÛÆäÀÌÁöº¸´Ù ÀÛÀ¸¸é ¾ÈµÊ
+		// í˜„ì¬ í˜ì´ì§€ê°€ ì‹œì‘í˜ì´ì§€ë³´ë‹¤ ì‘ìœ¼ë©´ ì•ˆë¨
 		if (currentPageNo < startPageNo) {
 			currentPageNo = startPageNo;
 		}
-		// ÇöÀç ÆäÀÌÁö°¡ ¸¶Áö¸·ÆäÀÌÁöº¸´Ù Å©¸é ¾ÈµÊ
+		// í˜„ì¬ í˜ì´ì§€ê°€ ë§ˆì§€ë§‰í˜ì´ì§€ë³´ë‹¤ í¬ë©´ ì•ˆë¨
 		if (currentPageNo > endPageNo) {
 			currentPageNo = endPageNo;
 		}
 
-		int currentPageBlock = (int) Math.ceil((double) currentPageNo / pageCntPerBlock); // ÇöÀç ÆäÀÌÁö ºí·Ï
-		int startPageNoInBlock = (currentPageBlock - 1) * pageCntPerBlock + 1; // ÇöÀç ÆäÀÌÁö ºí·ÏÀÇ ½ÃÀÛ ÆäÀÌÁö ¹øÈ£
-		int endPageNoInBlock = startPageNoInBlock + pageCntPerBlock - 1;// // ÇöÀç ÆäÀÌÁö ºí·ÏÀÇ ¸¶Áö¸· ÆäÀÌÁö ¹øÈ£
+		int currentPageBlock = (int) Math.ceil((double) currentPageNo / pageCntPerBlock); // í˜„ì¬ í˜ì´ì§€ ë¸”ë¡
+		int startPageNoInBlock = (currentPageBlock - 1) * pageCntPerBlock + 1; // í˜„ì¬ í˜ì´ì§€ ë¸”ë¡ì˜ ì‹œì‘ í˜ì´ì§€ ë²ˆí˜¸
+		int endPageNoInBlock = startPageNoInBlock + pageCntPerBlock - 1;// // í˜„ì¬ í˜ì´ì§€ ë¸”ë¡ì˜ ë§ˆì§€ë§‰ í˜ì´ì§€ ë²ˆí˜¸
 
-		// ÆäÀÌÁö ¹øÈ£°¡ ¸¶Áö¸· ÆäÀÌÁö¸¦ ³ÑÀ¸¸é ¾ÈµÊ
+		// í˜ì´ì§€ ë²ˆí˜¸ê°€ ë§ˆì§€ë§‰ í˜ì´ì§€ë¥¼ ë„˜ìœ¼ë©´ ì•ˆë¨
 		if (endPageNoInBlock > endPageNo) {
 			endPageNoInBlock = endPageNo;
 		}
-		// ÇØ´ç ÆäÀÌÁöÀÇ °Ô½Ã¹° ¸ñ·ÏÀÇ Ã¹ ÀÎµ¦½º
+		// í•´ë‹¹ í˜ì´ì§€ì˜ ê²Œì‹œë¬¼ ëª©ë¡ì˜ ì²« ì¸ë±ìŠ¤
 		int startIndex = (currentPageNo - 1) * itemsCntPerPage;
 
-		// ÇØ´ç ÆäÀÌÁöÀÇ °Ô½Ã¹° ¸ñ·ÏÀÇ ¸¶Áö¸· ÀÎµ¦½º
+		// í•´ë‹¹ í˜ì´ì§€ì˜ ê²Œì‹œë¬¼ ëª©ë¡ì˜ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤
 		int endIndex = startIndex + itemsCntPerPage;
 
-		// ÆäÀÌÁöÀÇ ¸¶Áö¸· ÀÎµ¦½º°¡ ÀúÀå¼ÒÀÇ ¸¶Áö¸· ÀÎµ¦½ºº¸´Ù Å©¸é ¾ÈµÊ
+		// í˜ì´ì§€ì˜ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ê°€ ì €ì¥ì†Œì˜ ë§ˆì§€ë§‰ ì¸ë±ìŠ¤ë³´ë‹¤ í¬ë©´ ì•ˆë¨
 		if (endIndex > totalCntOfItems) {
 			endIndex = totalCntOfItems;
 		}
-		// ÆäÀÌÁöº° °Ô½Ã¹° Ãâ·Â
+		// í˜ì´ì§€ë³„ ê²Œì‹œë¬¼ ì¶œë ¥
 		for (int i = startIndex; i < endIndex; i++) {
-			System.out.println("¹øÈ£ : " + articles.get(i).getId());
-			System.out.println("Á¦¸ñ : " + articles.get(i).getTitle());
-			System.out.println("³»¿ë : " + articles.get(i).getBody());
+			System.out.println("ë²ˆí˜¸ : " + articles.get(i).getId());
+			System.out.println("ì œëª© : " + articles.get(i).getTitle());
+			System.out.println("ë‚´ìš© : " + articles.get(i).getBody());
 			System.out.println("======================================");
 		}
 

@@ -1,9 +1,9 @@
 public class Like {
 
-	private int id; //  ÁÁ¾Æ¿ä ¹øÈ£
-	private int parentId; //¿ø±Û ¹øÈ£
-	private int memberId; // Ã¼Å© À¯Àú ¹øÈ£
-	private String regDate; // µî·Ï³¯Â¥
+	private int id; //  ì¢‹ì•„ìš” ë²ˆí˜¸
+	private int parentId; //ì›ê¸€ ë²ˆí˜¸
+	private int memberId; // ì²´í¬ ìœ ì € ë²ˆí˜¸
+	private String regDate; // ë“±ë¡ë‚ ì§œ
 
 	public Like() {
 
